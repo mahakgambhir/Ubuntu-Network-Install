@@ -5,4 +5,4 @@ Automatically install ubuntu over a local network
 To be run on an ubuntu machine to act as a server for the network
 
 Run init.py as the root user.
-All the required files are provided.
+Besides the provided files, you would need a x86 Ubuntu 14.04 ISO image file.
