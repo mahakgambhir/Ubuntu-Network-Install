@@ -24,8 +24,8 @@ end=raw_input("End: ")
 wfile=open("/etc/dhcp/dhcpd.conf","w")
 wfile.write("allow booting;\nallow bootp;\n\n");
 wfile.write("subnet " + subnet_ip + " netmask " + subnet_mask +" {\n");
-wfile.write("range " + start + " " + end)
-wfile.write("filename \"/pxelinux.0\";\n}\n\n")
+wfile.write("range " + start + " " + end + " ;\n")
+wfile.write("filename \"pxelinux.0\";\n}\n\n")
 wfile.close()
 
 wfile=open("/etc/default/tftpd-hpa","w")
@@ -40,17 +40,17 @@ path=raw_input("Enter the path to your Ubuntu 14.04 (x86) ISO image: ")
 cmd("mkdir mount_temp")
 cmd("mkdir /var/www/ubuntu")
 
-cmd("mount -o loop -t iso9660 " + path + " " + mount_temp)
-cmd("cp -r ./mount_temp /var/www/ubuntu")
+cmd("mount -o loop -t iso9660 " + path + " ./mount_temp")
+cmd("cp -r ./mount_temp/* /var/www/ubuntu")
 
 cmd("umount ./mount_temp")
 cmd("rm -r ./mount_temp")
 
 path=raw_input("Enter the path to the netboot directory (should also be named so): ")
-cmd("cp -r " + path + "/var/lib/tftpboot/");
+cmd("cp -r " + path + " /var/lib/tftpboot");
 
-path=raw_input("Enter the path to the .ks file: ")
-cmd("cp -r " + path + "/var/www/html/");
+path=raw_input("Enter the path to the ks.cfg file: ")
+cmd("cp -r " + path + " /var/www/html");
 
 ip=raw_input("Enter your ip address: ")
 
@@ -68,5 +68,4 @@ wfile.write("\tappend ks=http://"+ ip +"/ks.cfg vga=normal initrd=ubuntu-install
 wfile.close()
 
 print "\n\nYour initial setup is over!!\n\nYou may now proceed to install ubuntu on your network connected machines.."
-
 
