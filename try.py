@@ -8,6 +8,9 @@ if os.geteuid() != 0:
 
 cmd("apt-get install dhcp3-server tftpd-hpa syslinux nfs-kernel-server initramfs-tools");
 
+cmd("service isc-dhcp-server start")
+cmd("/etc/init.d/tftpd-hpa start")
+
 subnet_ip=raw_input("Enter your subnet ip: ")
 subnet_mask=raw_input("Enter your subnet mask: ")
 
