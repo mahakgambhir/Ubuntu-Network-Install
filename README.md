@@ -19,3 +19,5 @@ sudo python init.py
 
 Supply the required information.
 If you have a local DHCP server running, make sure that it has a 'next-server' entry pointing to your IP.
+
+Now network book the workstation on which Ubuntu needs to be installed, and select the "Install (from local http server)" option once you have selected to install Ubuntu.
